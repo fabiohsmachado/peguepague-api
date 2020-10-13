@@ -34,17 +34,17 @@ class UserController extends Controller
             'name' => 'required',
             'email' => [
                 'required',
-                'unique:users,email'
+                'unique:App\Models\User,email'
             ],
             'password' => 'required',
             'document_type' => [
                 'required',
                 new EnumValue(DocumentType::class),
-                'unique:users,document_type,NULL,NULL,document,' . $request['document'],
+                'unique:App\Models\User,document_type,NULL,NULL,document,' . $request['document'],
             ],
             'document' => [
                 'required',
-                'unique:users,document,NULL,NULL,document_type,' . $request['document_type'],
+                'unique:App\Models\User,document,NULL,NULL,document_type,' . $request['document_type'],
             ],
             'user_type' => [
                 'required',

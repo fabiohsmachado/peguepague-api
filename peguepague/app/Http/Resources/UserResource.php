@@ -20,7 +20,8 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'document_type' => $this->document_type->description,
             'document' => $this->document,
-            'user_type' => $this->user_type->description
+            'user_type' => $this->user_type->description,
+            'wallets' => WalletResource::collection($this->wallets)
         ];
     }
 }
