@@ -28,4 +28,9 @@ class User extends Model
         'document_type' => DocumentType::class,
         'user_type' => UserType::class
     ];
+
+    public function wallets()
+    {
+        return $this->hasMany(Wallet::class);
+    }
 }
