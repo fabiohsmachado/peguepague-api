@@ -9,10 +9,30 @@ class Wallet extends Model
 {
     use HasFactory;
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = ['user_id', 'balance'];
+
+    /**
+     * Add given amount to the wallet's balance.
+     * 
+     * @param float amount
+     */
+    public function add(float $amount)
+    {
+        $this->balance += $amount;
+    }
+
+    /**
+     * Subtract given amount from the wallet's balance.
+     * 
+     * @param float amount
+     */
+    public function subtract(float $amount)
+    {
+        $this->balance -= $amount;
+    }
 }
