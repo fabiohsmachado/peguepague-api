@@ -11,6 +11,11 @@ class User extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'email',
@@ -20,15 +25,28 @@ class User extends Model
         'user_type'
     ];
 
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
     protected $hidden = [
         'password',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
     protected $casts = [
         'document_type' => DocumentType::class,
         'user_type' => UserType::class
     ];
 
+    /**
+     * The wallet list that belongs to the user.
+     */
     public function wallets()
     {
         return $this->hasMany(Wallet::class);
