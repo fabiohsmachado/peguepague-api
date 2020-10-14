@@ -32,7 +32,7 @@ class TransactionController extends Controller
                 'required', 
                 'exists:App\Models\User,id'
             ],
-            'value' => 'required',
+            'value' => 'required|numeric|gt:0',
         ];
 
         $this->validation_messages = [
