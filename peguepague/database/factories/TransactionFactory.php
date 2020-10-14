@@ -2,18 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
-use App\Models\Wallet;
+use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class WalletFactory extends Factory
+class TransactionFactory extends Factory
 {
      /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Wallet::class;
+    protected $model = Transaction::class;
 
      /**
      * Define the model's default state.
@@ -22,11 +21,12 @@ class WalletFactory extends Factory
      */
     public function definition()
     {
-        $balance = $this->faker->randomFloat(2);
         return [
-            'user_id' => $this->faker->randomNumber(),
-            'initial_balance' => $balance,
-            'balance' => $balance
+            'payer_id' => $this->faker->randomNumber(),
+            'payee_id' => $this->faker->randomNumber(),
+            'amount' => $this->faker->randomFloat(),
+            'notified' => false,
+            'reverse' => null
         ];
     }
 }

@@ -35,10 +35,10 @@ class PostTransactionOperation implements IPostTransactionOperation
             throw new OperationException('Unauthorized transaction.', 403);
         }
 
-        $payer = User::find($payload['payer']);
+        $payer = $this->unitOfWork->findUserById($payload['payer']);
         $payer->wallet->subtract($payload['value']);
 
-        $payee = User::find($payload['payee']);
+        $payee = $this->unitOfWork->findUserById($payload['payee']);
         $payee->wallet->add($payload['value']);
         
         $transaction = $this->unitOfWork->register($payer, $payee, $payload['value']);

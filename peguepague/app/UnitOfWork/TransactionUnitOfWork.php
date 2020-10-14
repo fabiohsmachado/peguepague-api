@@ -64,4 +64,15 @@ class TransactionUnitOfWork implements ITransactionUnitOfWork
 
         return $reversed_transaction;
     }
+
+
+    /**
+     * Fetches the user.
+     * 
+     * @param int id The user id.
+     */
+    public function findUserById(int $id) : User
+    {
+        return User::find($id);
+    }
 }

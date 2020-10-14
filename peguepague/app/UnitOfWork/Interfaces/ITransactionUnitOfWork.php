@@ -22,4 +22,11 @@ interface ITransactionUnitOfWork
      * @param Transaction transaction The transaction to reverse.
      */
     public function reverse(Transaction $transaction) : Transaction;
+
+    /**
+     * Fetches the user.
+     * 
+     * @param int id The user id.
+     */
+    public function findUserById(int $id) : User;
 }

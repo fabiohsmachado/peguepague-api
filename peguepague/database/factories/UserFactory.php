@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Enums\DocumentType;
 use App\Enums\UserType;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
