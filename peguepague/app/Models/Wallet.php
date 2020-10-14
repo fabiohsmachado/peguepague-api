@@ -19,7 +19,7 @@ class Wallet extends Model
     /**
      * Add given amount to the wallet's balance.
      * 
-     * @param float amount
+     * @param float amount The value to add.
      */
     public function add(float $amount)
     {
@@ -29,7 +29,7 @@ class Wallet extends Model
     /**
      * Subtract given amount from the wallet's balance.
      * 
-     * @param float amount
+     * @param float amount The value to subtract.
      */
     public function subtract(float $amount)
     {

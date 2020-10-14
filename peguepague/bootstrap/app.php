@@ -94,6 +94,16 @@ $app->configure('app');
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
+// Operations
+$app->register(App\Providers\Operations\PostTransactionServiceProvider::class);
+
+// Services
+$app->register(App\Providers\Services\AuthorizerServiceProvider::class);
+
+//Unit of Work
+$app->register(App\Providers\UnitOfWork\TransactionUnitOfWorkServiceProvider::class);
+
 if (class_exists('Laravel\Tinker\TinkerServiceProvider')) {
     $app->register(Laravel\Tinker\TinkerServiceProvider::class);
 }

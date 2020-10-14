@@ -45,10 +45,10 @@ class User extends Model
     ];
 
     /**
-     * The wallet list that belongs to the user.
+     * The wallet that belongs to the user.
      */
-    public function wallets()
+    public function wallet()
     {
-        return $this->hasMany(Wallet::class);
+        return $this->hasOne(Wallet::class);
     }
 }

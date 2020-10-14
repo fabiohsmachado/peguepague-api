@@ -21,7 +21,7 @@ class UserResource extends JsonResource
             'document_type' => $this->document_type->description,
             'document' => $this->document,
             'user_type' => $this->user_type->description,
-            'wallets' => WalletResource::collection($this->wallets)
+            'wallet' => new WalletResource($this->wallet)
         ];
     }
 }
