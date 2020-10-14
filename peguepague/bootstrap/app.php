@@ -95,11 +95,15 @@ $app->configure('app');
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
+// Redis support
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
+
 // Operations
 $app->register(App\Providers\Operations\PostTransactionServiceProvider::class);
 
 // Services
 $app->register(App\Providers\Services\AuthorizerServiceProvider::class);
+$app->register(App\Providers\Services\TransactionNotifierServiceProvider::class);
 
 //Unit of Work
 $app->register(App\Providers\UnitOfWork\TransactionUnitOfWorkServiceProvider::class);

@@ -14,6 +14,24 @@ class Transaction extends Model
     protected $fillable = [
         'payer_id',
         'payee_id',
-        'amount'
+        'amount',
+        'reverse',
+        'notified'
     ];
+
+    /**
+     * The transaction payer.
+     */
+    public function payer()
+    {
+        return $this->hasOne(User::class, 'id', 'payer_id');
+    }
+
+    /**
+     * The transaction payee.
+     */
+    public function payee()
+    {
+        return $this->hasOne(User::class, 'id', 'payee_id');
+    }
 }

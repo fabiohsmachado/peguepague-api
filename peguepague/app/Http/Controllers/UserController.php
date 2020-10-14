@@ -6,6 +6,7 @@ use App\Enums\DocumentType;
 use App\Enums\UserType;
 use App\Models\User;
 use App\Http\Resources\UserResource;
+use App\Models\Wallet;
 use BenSampo\Enum\Rules\EnumValue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -57,7 +58,9 @@ class UserController extends Controller
             return Response()->json(['errors' => $validator->errors()], 400);
         };
 
-        User::create($validator->validated());
+        $user = User::create($validator->validated());
+        Wallet::create(['user_id' => $user->id, 'initial_balance' => 1000, 'balance' => 1000]);
+        return new UserResource($user);
     }
 
     /**
@@ -75,16 +78,5 @@ class UserController extends Controller
         };
         
         return new UserResource($user);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(int $id)
-    {
-        return User::destroy($id);
     }
 }

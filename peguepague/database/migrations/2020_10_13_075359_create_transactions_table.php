@@ -17,14 +17,10 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->foreignId('payer_id')->references('id')->on('users');
             $table->foreignId('payee_id')->references('id')->on('users');
-            $table->decimal('amount', 10, 2);
+            $table->foreignId('reverse')->nullable();
+            $table->unsignedFloat('amount', 10, 2);
             $table->boolean('notified')->default(false);
             $table->timestamps();
-        });
-
-        Schema::table('transactions', function (Blueprint $table) 
-        {
-            $table->foreignId('reverse')->references('id')->on('transactions');
         });
     }
 

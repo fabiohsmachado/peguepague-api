@@ -68,7 +68,8 @@ class TransactionController extends Controller
         try
         {
             $payload = $validator->validated();
-            $operation->process($payload);
+            $transaction = $operation->process($payload);
+            return Response($transaction);
         }
         catch(OperationException $exception)
         {
@@ -76,7 +77,7 @@ class TransactionController extends Controller
         }
         catch(Exception $exception)
         {
-            return Response('', 500);
+            return Response($exception, 500);
         }
     }
 }

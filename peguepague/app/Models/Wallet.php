@@ -14,7 +14,7 @@ class Wallet extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'balance'];
+    protected $fillable = ['user_id', 'initial_balance', 'balance'];
 
     /**
      * Add given amount to the wallet's balance.
@@ -34,5 +34,13 @@ class Wallet extends Model
     public function subtract(float $amount)
     {
         $this->balance -= $amount;
+    }
+
+    /** 
+     * The wallet's owner 
+     */
+    public function owner()
+    {
+        return $this->belongsTo(User::class);
     }
 }

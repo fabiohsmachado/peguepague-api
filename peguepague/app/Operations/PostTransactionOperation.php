@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Services\Interfaces\ITransactionAuthorizer;
 use App\Exceptions\OperationException;
+use App\Jobs\NotifyTransaction;
 use App\Operations\Interfaces\IPostTransactionOperation;
 use App\UnitOfWork\Interfaces\ITransactionUnitOfWork;
 
@@ -35,14 +36,13 @@ class PostTransactionOperation implements IPostTransactionOperation
         }
 
         $payer = User::find($payload['payer']);
-        $payer->wallet->add($payload['value']);
+        $payer->wallet->subtract($payload['value']);
 
         $payee = User::find($payload['payee']);
-        $payer->wallet->subtract($payload['value']);
+        $payee->wallet->add($payload['value']);
         
         $transaction = $this->unitOfWork->register($payer, $payee, $payload['value']);
-        
-        //$transaction->notify_payee();
+        dispatch(new NotifyTransaction($transaction));
 
         return $transaction;
     }

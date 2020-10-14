@@ -25,10 +25,12 @@ class TransactionUnitOfWork implements ITransactionUnitOfWork
                 $transaction = Transaction::create([
                     "payer_id" => $payer->id,
                     "payee_id" => $payee->id,
-                    "amount" => $value
+                    "amount" => $value,
+                    "reverse" => null
                 ]);
-                $payer->wallet->save();
-                $payee->wallet->save();    
+
+                $payer->wallet->update();
+                $payee->wallet->update();
 
                 return $transaction;
             }

@@ -15,9 +15,9 @@ class CreateWalletsTable extends Migration
     {
         Schema::create('wallets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->decimal('initial_balance', 10, 2);
-            $table->decimal('balance', 10, 2);
+            $table->foreignId('user_id')->onDelete('cascade');
+            $table->float('initial_balance', 10, 2);
+            $table->float('balance', 10, 2);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
